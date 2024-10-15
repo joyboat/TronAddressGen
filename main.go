@@ -8,23 +8,18 @@ import (
 	"os"
 	"strings"
 	"sync"
-	"time"
 )
 
-// GenerateKey go run main.go -endTimes=6 -numAddr=20 -numWorker=20
 // GenerateKey 生成一个 Tron 地址和对应的私钥（WIF 格式）。
 func GenerateKey() (address string, wif string) {
 	for {
-
 		pri, err := btcec.NewPrivateKey() // 创建新的私钥
 		if err != nil {
 			continue // 如果出错，重试
 		}
-		if len(pri.Key.Bytes()) == 32 { // 确保生成的私钥为32字节
-			address = addr.PubkeyToAddress(pri.ToECDSA().PublicKey).String() // 根据公钥生成地址
-			wif = pri.Key.String()                                           // 获取私钥字符串
-			return
-		}
+		address = addr.PubkeyToAddress(pri.ToECDSA().PublicKey).String() // 根据公钥生成地址
+		wif = pri.Key.String()                                           // 获取私钥字符串
+		return
 	}
 }
 
@@ -43,7 +38,6 @@ func generateBeginAndEndRepeatAccount(endRepeatTimes, numWorker int) (string, st
 	var wg sync.WaitGroup
 	resultChan := make(chan []string, 1) // 用于接收结果的通道
 	stopChan := make(chan struct{})      // 用于通知协程停止的通道
-	// 定义一个工作函数，每个工作协程会调用它来生成地址
 	worker := func() {
 		defer wg.Done() // 确保工作结束时减少计数
 		for {
@@ -76,8 +70,7 @@ func generateBeginAndEndRepeatAccount(endRepeatTimes, numWorker int) (string, st
 
 // Product 根据指定的模式生成多个 Tron 地址。
 func Product(endTimes int, numAddr, numWorker int) [][]string {
-	timestampMilli := time.Now().UnixMilli()
-	fileName := fmt.Sprintf("addr_%v_%v.txt", endTimes, timestampMilli)
+	fileName := fmt.Sprintf("addr_%v.txt", endTimes)
 	file, err := os.OpenFile(fileName, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
 	if err != nil {
 		fmt.Printf("打开文件出错: %v\n", err)
@@ -103,7 +96,7 @@ func Product(endTimes int, numAddr, numWorker int) [][]string {
 			fmt.Printf("生成账号出现错误: %v\n", err)
 			os.Exit(1)
 		}
-		fmt.Printf("\n ================>>> 钱包地址: %v, >>> 私钥: %v\n", tronAddress, privateKey)
+		fmt.Printf("\n>>> 钱包地址: %v, >>> 私钥: %v\n", tronAddress, privateKey)
 		_, err = file.WriteString(fmt.Sprintf("地址: %v >>>> 私钥: %v\n", tronAddress, privateKey))
 		if err != nil {
 			fmt.Printf("写入文件出错: %v\n", err)
