@@ -13,6 +13,8 @@ github.com/ethereum/go-ethereum v1.14.8 h1:NgOWvXS+lauK+zFukEvi85UmmsS/OkV0N23UZ
 github.com/ethereum/go-ethereum v1.14.8/go.mod h1:TJhyuDq0JDppAkFXgqjwpdlQApywnu/m10kFPxh8vvs=
 github.com/fbsobreira/gotron-sdk v0.0.0-20230418195951-b7bfbf1c0ade h1:nBd+g+UO23Kcj+vnw6a9bmH8o1XuREyb7CnAjtZo6G4=
 github.com/fbsobreira/gotron-sdk v0.0.0-20230418195951-b7bfbf1c0ade/go.mod h1:nu7RbxA7PUWdyMI9O/tBVLDjTMyU0MuRERlTyShJKGg=
+github.com/fbsobreira/gotron-sdk v0.0.0-20230907131216-1e824406fe8c h1:7NIY9Q4Kpjxja807mi3PJieLX63c/Gm35L8ffCemNUA=
+github.com/fbsobreira/gotron-sdk v0.0.0-20230907131216-1e824406fe8c/go.mod h1:uxY3MGTmqItqUr8gJzmpo8vrBAUHKW2JrGp3yYcL8us=
 github.com/holiman/uint256 v1.3.1 h1:JfTzmih28bittyHM8z360dCjIA9dbPIBlcTI6lmctQs=
 github.com/holiman/uint256 v1.3.1/go.mod h1:EOMSn4q6Nyt9P6efbI3bueV4e1b3dGlUCXeiRV4ng7E=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
